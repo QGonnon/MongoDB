@@ -124,3 +124,44 @@ db.collection.findOne(
 )
 ```
 
+## UTILISATION DE AGGREGATE
+
+### Premiere etape du pipeline : $match
+
+```js
+var pipeline = [
+    {
+        $match: {
+            "interets": "jardinage"
+        }
+    }
+]
+db.personnes.aggregate(pipeline).pretty()
+```
+
+### Deuxieme etape du pipeline : $project
+
+```js
+var pipeline = [
+    {
+        $match: {
+            "interets": "jardinage"
+        }
+    },
+    {
+        $project: {
+            "_id": 0,
+            "nom": 1,
+            "prenom":1,
+            "eligible": {$gte:["$age",70]}
+        }
+
+    },
+    {
+        $match: {
+            "eligible": true
+        }
+    }
+]
+db.personnes.aggregate(pipeline).pretty()
+```
