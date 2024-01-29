@@ -1,0 +1,1 @@
+index = accélère/optimiser les opérations de lecture
