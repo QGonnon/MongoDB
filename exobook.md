@@ -40,7 +40,7 @@ db.employees.find({},{_id:false,name:true,job:true})
 ```
 Écrivez une requête pour compter le nombre d'employés par poste.
 ```
-db.employees.aggregate({$count:"NbEmployees"})
+db.employees.aggregate({$group:{_id:"$job", count:{$sum: 1}}})
 ```
 Écrivez une requête pour mettre à jour le salaire de tous les développeurs à 80000.
 ```
