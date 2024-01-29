@@ -22,16 +22,27 @@ Insérez les documents suivants dans la collection "employees":
    salary: 85000
 }
 
-Écrivez une requête MongoDB pour trouver tous les documents dans la collection "employees".
-
+Écrivez une requête MongoDB pour trouver tous les documents dans la collection "employees". 
+``` 
+db.employees.find()
+```
 Écrivez une requête pour trouver tous les documents où l'âge est supérieur à 33.
-
+```
+db.employees.find({age:{$gt:33}})
+```
 Écrivez une requête pour trier les documents dans la collection "employees" par salaire décroissant.
-
+```
+db.employees.aggregate({$sort:{salary:-1}})
+```
 Écrivez une requête pour sélectionner uniquement le nom et le job de chaque document.
-
+```
+db.employees.find({},{_id:false,name:true,job:true})
+```
 Écrivez une requête pour compter le nombre d'employés par poste.
-
+```
+db.employees.aggregate({$count:"NbEmployees"})
+```
 Écrivez une requête pour mettre à jour le salaire de tous les développeurs à 80000.
-
-
+```
+db.employees.updateMany({},{$set:{salary:"80000"}})
+```
