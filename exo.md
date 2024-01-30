@@ -249,5 +249,8 @@ Exercice 25
 
 À l’aide de la méthode permettant de trouver un seul document et de le mettre à jour en même temps, réduisez de 15 personnes la capacité de la salle située à Nîmes.
 ```
-
+db.salles.updateOne(
+    {"adresse.ville":"Nîmes"},
+    [{$inc:{capacite:-15}}]
+)
 ```
