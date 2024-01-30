@@ -191,7 +191,7 @@ Exercice 18
 
 Pour les salles dont le nom commence par la lettre P (majuscule ou minuscule), augmentez la capacité de 150 places et rajoutez un champ de type tableau nommé contact dans lequel se trouvera un document comportant un champ nommé telephone dont la valeur sera « 04 11 94 00 10 ».
 ```
-db.salles.updateMany( { nom:/^[Pp]/ }, {$set: {"contact.telephone":"04 11 94 00 10"}})
+db.salles.updateMany( { nom:/^[Pp]/ }, {$set: {"contact.telephone":"04 11 94 00 10"}, $inc: {capacite:150}})
 ```
 
 Exercice 19
@@ -219,14 +219,23 @@ Exercice 22
 
 Pour les documents dont le champ _id n’est pas de type « objectId », affichez le nom de la salle ayant la plus grande capacité. Pour y parvenir, vous effectuerez un tri dans l’ordre qui convient tout en limitant le nombre de documents affichés pour ne retourner que celui qui comporte la capacité maximale.
 ```
-
+db.salles.aggregate(
+    {$match:{_id:{$not:{$type:"objectId"}}}},
+    {$project:{_id:false, nom:true, capacite:true}},
+    {$sort:{capacite:-1}},
+    {$limit:1},
+    {$project:{_id:false, nom:true}}
+)
 ```
 
 Exercice 23
 
 Remplacez, sur la base de la valeur de son champ _id, le document créé à l’exercice 20 par un document contenant seulement le nom préexistant et la capacité, que vous monterez à 60 personnes.
 ```
-
+db.salles.updateOne(
+    {_id:{$eq:ObjectId('65b8b00d5cb6cec946ad5894')}},
+    [{$set:{nom:"$nom", capacite:60}}, {$unset:"smac"}]
+)
 ```
 
 Exercice 24
