@@ -156,7 +156,7 @@ Exercice 13
 
 Affichez les différents codes postaux présents dans les documents de la collection salles.
 ```
-db.salles.find({},{"_id":0,"adresse.codePostal":1})
+db.salles.distinct("adresse.codePostal")
 ```
 
 Exercice 14
@@ -198,22 +198,21 @@ Exercice 19
 
 Pour les salles dont le nom commence par une voyelle (peu importe la casse, là aussi), rajoutez dans le tableau avis un document composé du champ date valant la date courante et du champ note valant 10 (double ou entier). L’expression régulière pour chercher une chaîne de caractères débutant par une voyelle suivie de n’importe quoi d’autre est ^[aeiouAEIOU]+$.
 ```
-NON FINI
-db.salles.updateMany( {nom:/^[aeiouAEIOU]/ }, {$addToSet: {avis:{$each:[{date:"$$NOW", note:10}]}}})
+db.salles.updateMany( {nom:/^[aeiouAEIOU]/ }, {$addToSet: {avis:{date:new Date(), note:10}}})
 ```
 
 Exercice 20
 
 En mode upsert, vous mettrez à jour tous les documents dont le nom commence par un z ou un Z en leur affectant comme nom « Pub Z », comme valeur du champ capacite 50 personnes (type entier et non décimal) et en positionnant le champ booléen smac à la valeur « false ».
 ```
-
+db.salles.updateMany( {nom:/^[zZ]/ }, {$set:{nom:"Pub Z", capacite:50, smac:false}}, {upsert:true})
 ```
 
 Exercice 21
 
 Affichez le décompte des documents pour lesquels le champ _id est de type « objectId ».
 ```
-
+db.salles.find({_id:{$type:"objectId"}}).count()
 ```
 
 Exercice 22
