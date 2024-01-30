@@ -5,6 +5,7 @@
 Vous disposez du code JavaScript suivant qui comporte une fonction de conversion d’une distance exprimée en kilomètres vers des radians ainsi que d’un document dont les coordonnées serviront de centre à notre sphère de recherche. Écrivez la requête qui affichera le nom des salles situées dans un rayon de 60 kilomètres et qui programment du Blues et de la Soul.
 
 ```js
+//fonction KilometresEnRadians non utilisé
 var KilometresEnRadians = function(kilometres){ var rayonTerrestreEnKm = 6371;
 return kilometres / rayonTerrestreEnKm;
 };
