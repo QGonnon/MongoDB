@@ -8,8 +8,17 @@ Vous disposez du code JavaScript suivant qui comporte une fonction de conversion
 var KilometresEnRadians = function(kilometres){ var rayonTerrestreEnKm = 6371;
 return kilometres / rayonTerrestreEnKm;
 };
-var salle = db.salles.findOne({"adresse.ville": "Nîmes"}); var requete = { ... };
-db.salles.find();
+var salle = db.salles.findOne({"adresse.ville": "Nîmes"}); 
+var requete = { 
+    "adresse.localisation":{
+        $nearSphere: {
+            $geometry: salle.adresse.localisation,
+            $maxDistance: 60000
+        }
+    },
+    styles:{$all:["jazz","blues"]}
+ };
+db.salles.find(requete,{_id:0,"nom":1});
 ```
 
 ## Exercice 2
