@@ -9,7 +9,7 @@ var KilometresEnRadians = function(kilometres){ var rayonTerrestreEnKm = 6371;
 return kilometres / rayonTerrestreEnKm;
 };
 var salle = db.salles.findOne({"adresse.ville": "Nîmes"}); var requete = { ... };
-db.salles.find(requete ... };
+db.salles.find();
 ```
 
 ## Exercice 2
@@ -18,5 +18,14 @@ db.salles.find(requete ... };
 
 ```js
 var marseille = {"type": "Point", "coordinates": [43.300000, 5.400000]}
- db.salles.find(...)
+db.salles.find({
+    "adresse.localisation":{
+        $nearSphere: {
+            $geometry: marseille,
+            $maxDistance: 100000
+        }
+    }
+},
+{_id:0,"adresse.ville":1}
+)
 ```
