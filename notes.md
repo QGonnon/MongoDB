@@ -176,3 +176,30 @@ docker run -d -p 27017:27017 --name mongo mongo #lance un container mongo
 docker exec -it mongo /bin/bash #se connecte au container mongo
 mongosh #lance le shell mongo
 ```
+
+Ma solution :
+```bash
+docker run -d -p 27017:27017 --name mongo -v C:\Users\69140\OneDrive\Desktop\Isitech\MongoDB\data:/home/data mongo #lance un container mongo avec un volume
+mongoimport --db=sample_db --collection="Motor Vehicle Collisions" --type=csv --headerline --file="Motor_Vehicle_Collisions_-_Crashes_20240130.csv"
+```
+
+Correction
+```bash
+docker cp Motor_Vehicle_Collisions_-_Crashes_20240130.csv mongo:/data/Motor_Vehicle_Collisions_-_Crashes_20240130.csv
+
+mongoimport --db sample_db --collection Motor_Vehicle_Collisions --type csv --headerline --file data/Motor_Vehicle_Collisions_-_Crashes_20240130.csv
+```
+
+Expliquation des options :
+
+- --type: precise le type de fichier, par defaut json
+- -d: nom de la base de données
+- -c/ --collection: nom de la collection
+- --headerline: indique que la premiere ligne du fichier est le header
+- --drop: supprime la collection avant d'importer les données
+
+En cas d'authentification, il faut ajouter les options suivantes :
+
+- --u/ --username: nom d'utilisateur
+- --p/ --password: mot de passe
+- --authenticationDatabase: nom de la base de données d'authentification
