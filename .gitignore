@@ -1,3 +1,4 @@
 mongosh*/
 data/
 node/node_modules/
+node/config.env
