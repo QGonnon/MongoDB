@@ -29,5 +29,5 @@ Donnez le nom des salles qui résident à l’intérieur.
           ],
         ]
       }
-  }}},{_id:0,"adresse.ville":1})
+  }}},{_id:0,"nom":1})
 ```
