@@ -4,6 +4,10 @@ https://raw.githubusercontent.com/mongodb/docs-assets/geospatial/neighborhoods.j
 
 Creation d'un index 2dsphere
 Un index géospatial, et améliore presque toujours les performances des requêtes $geoWithin et $geoIntersects. Comme ces données sont géographiques, créez un index2dsphère sur chaque collection en utilisant le shell mongo :
+```js
+db.restaurants.createIndex({"location":"2dsphere"})
+db.neighborhoods.createIndex({"geometry":"2dsphere"})
+```
 
 Attention, la création d'un index est OBLIGATOIRE pour permettre l'utilisation des arguments :$geoIntersects, $geoSphere, $geoNear, $geoWithin, $centerSphere, $nearSphere , etc...
 
