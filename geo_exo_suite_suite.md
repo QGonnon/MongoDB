@@ -36,9 +36,10 @@ db.neighborhoods.find(
 ```
 Trouver la requete qui trouve les restaurants dans un rayon donné (8km par exemple)
 ```js
+var rayonMax = 8000
 var point = {coordinates:[-73.99067,40.761553], type: 'Point'}
 db.restaurants.find(
-    {"location":{$nearSphere: { $geometry: point, $maxDistance:8000}}},
+    {"location":{$nearSphere: { $geometry: point, $maxDistance:rayonMax}}},
     {_id:0,name:1}
 )
 ```
