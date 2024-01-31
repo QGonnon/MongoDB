@@ -68,7 +68,13 @@ Récupérez le jeu de données suivant:
 Consignes :
 
 - importez le jeu d'essai, decrivez le
+```
+le jeu est composé de locations airbnb avec toutes ses informations et avis
+```
 - creer un index de text sur les champs `summary`, `description` et `name`
+```js
+db.airbnb.createIndex({"summary":"text","description":"text","name":"text"})
+```
 - Lister tous les appartements contenant le terme `duplex`
 - Compter le nombre d'appartements qui possède un lit `king size`
 - Compter combien d'appartements ont pour description `cozy, studio` mais pas `furnish` (a partir de cette etape supprimez l'index et le placer uniquement sur la description)
