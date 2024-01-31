@@ -81,7 +81,11 @@ db.airbnb.find({$text:{$search:"duplex"},property_type:"Apartment"}, {_id:0, nam
 ```
 - Compter le nombre d'appartements qui possède un lit `king size`
 ```js
-db.airbnb.find({bed_type:"king size"}).count()
+db.airbnb.find({property_type:"Apartment", bed_type:"king size"}).count()
 ```
 - Compter combien d'appartements ont pour description `cozy, studio` mais pas `furnish` (a partir de cette etape supprimez l'index et le placer uniquement sur la description)
--
+```js
+db.airbnb.dropIndex("summary_text_description_text_name_text")
+db.airbnb.createIndex({"description":"text"})
+db.airbnb.find({$text:{$search:"cozy, studio -furnish"},property_type:"Apartment"}).count()
+```
