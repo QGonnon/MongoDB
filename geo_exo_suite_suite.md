@@ -19,7 +19,26 @@ Trouvez la commande qui va retourner le restaurant Riviera Caterer... De quel ty
 db.restaurants.find({name:"Riviera Caterer"})
 ```
 Trouvez "Hell's kitchen" au sein de la collection "neighborhoods" et retournez le nom du quartier, sa superficie et sa population. Quelle est la superficie totale de ce quartier ?
-
+```js
+var restaurant = db.restaurants.findOne({name:/^Hell's kitchen/i})
+db.neighborhoods.find(
+    {"geometry":{$geoIntersects: { $geometry: restaurant.location}}},
+    {_id:0,name:1}
+)
+```
 Trouvez la requete type qui permet de recuperer le nom du quartier a partir d'un point donné.
-
+```js
+var point = {coordinates:[-73.99067,40.761553], type: 'Point'}
+db.neighborhoods.find(
+    {"geometry":{$geoIntersects: { $geometry: point}}},
+    {_id:0,name:1}
+)
+```
 Trouver la requete qui trouve les restaurants dans un rayon donné (8km par exemple)
+```js
+var point = {coordinates:[-73.99067,40.761553], type: 'Point'}
+db.restaurants.find(
+    {"location":{$nearSphere: { $geometry: point, $maxDistance:8000}}},
+    {_id:0,name:1}
+)
+```
