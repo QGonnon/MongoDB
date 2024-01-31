@@ -76,6 +76,9 @@ le jeu est composé de locations airbnb avec toutes ses informations et avis
 db.airbnb.createIndex({"summary":"text","description":"text","name":"text"})
 ```
 - Lister tous les appartements contenant le terme `duplex`
+```js
+db.airbnb.find({$text:{$search:"duplex"}}, {_id:0, name:1, description:1, summary:1})
+```
 - Compter le nombre d'appartements qui possède un lit `king size`
 - Compter combien d'appartements ont pour description `cozy, studio` mais pas `furnish` (a partir de cette etape supprimez l'index et le placer uniquement sur la description)
 -
