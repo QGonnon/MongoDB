@@ -47,3 +47,17 @@ db.orders.insertMany([
     value: NumberDecimal("102.24"),
   },
 ]);
+db.orders.aggregate([
+  {$sort:{orderdate:1}},
+  {$group:{
+    _id:"$customer_id",
+    orderdate:{$first:"$orderdate"},
+    nbOrders:{$sum:1},
+    totalValue:{$sum:"$value"},
+    listOfOrders:{$push:{
+      customer_id: "$customer_id",
+      orderdate: "$orderdate",
+      value: "$value",
+    }}
+  }}
+])
