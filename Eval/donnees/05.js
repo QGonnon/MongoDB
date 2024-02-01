@@ -55,3 +55,17 @@ db.orders.insertMany([
     value: NumberDecimal("429.65"),
   },
 ]);
+db.orders.aggregate([
+  {$lookup:{
+    from: "products",
+    localField:"product_id",
+    foreignField:"id",
+    as:"products"
+  }},
+  {$project:{
+    _id:0,
+    "products.description":0,
+    "products._id":0,
+    "products.id":0,
+  }}
+])
