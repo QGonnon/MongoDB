@@ -69,3 +69,19 @@ db.orders.insertMany([
     value: NumberDecimal("429.65"),
   },
 ]);
+db.products.aggregate([
+  {$lookup:{
+    from: "orders",
+    let:{name:"$name", variation:"$variation"},
+    pipeline:[
+      {$match:{$expr:{$and:[
+        {$eq:["$product_name","$$name"]},
+        {$eq:["$product_variation","$$variation"]}
+      ]}}},
+      {$project:{product_name:0,product_variation:0,_id:0}}
+    ],
+    as:"orders"
+  }},{
+    $project:{_id:0}
+  }
+])
