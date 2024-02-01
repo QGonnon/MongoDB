@@ -54,3 +54,5 @@ db.persons.insertMany([
     language: "French",
   },
 ]);
+//distinct tri automatiquement par ordre alphabétique, inutile donc d'utiliser un sort.
+db.persons.distinct("language")
