@@ -60,3 +60,15 @@ db.orders.insertMany([
     ],
   },
 ]);
+db.orders.aggregate([
+  {$unwind:"$products"},
+  {$group:{
+    _id:{$gt:["$products.price",15]},
+    nbExpensiveProducts:{$sum:1},
+    totalValueExpensiveProducts:{$sum:"$products.price"}
+  }},
+  {$match:{ _id:true }},
+  {$project:{
+    _id:0
+  }}
+])
