@@ -1,1 +1,7 @@
 Les middlewares, comme express, permettent de faire le pont entre l'application utilisateur et l'api. Express permet aussi de déployer les dîtes applications utilisateurs.
+
+jeu de données : [lien](https://storage.googleapis.com/kaggle-data-sets/2418169/4086143/bundle/archive.zip?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=gcp-kaggle-com%40kaggle-161607.iam.gserviceaccount.com%2F20240131%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20240131T154501Z&X-Goog-Expires=259200&X-Goog-SignedHeaders=host&X-Goog-Signature=bee24f970b93a99b03794bdb71b32c60064048015f4a630555afe8644ab4adebd2b9d1f38b92a1549a351b67e518b3437dd72c5d1a6dbbc9bf7b2ab9c0bc0b6b2809c78a4ddf070394b6b5a61b7251388bb235405f6e91c3d8f89b649f572973b2a42a0d089357596c4d269bd30431f81cc2f18a9eab1ee372e33e55623731fcee61c1cca2b9feba174c78c687b4268b5fd7501ca9f870b643025543e9de53a58b8f5441aad50dcf02cd8f0761ff45ce17d414d0d77d46bf621d0e9cb932a07d8731c7bb1f8397048a86e885dcb5924a94b7e59fd764fc67bebb1f25c4b517d1d529a7ae0c7ef2a64420d6509cd647627cba73ae58c865a0415e842002eedd20)
+
+## 2 types d'import en js:
+ - import nommé : autant d'export qu'on veut par fichier (import avec "{}")
+ - import defaut : un seul export par fichier (import sans "{}")
