@@ -12,7 +12,8 @@ const meteoSchema = new Schema({
   precipitation: Number,
   new_snow: Number,
   snow_depth: Number,
-});
+},
+{collection : 'meteo'});
 
 const Meteo = model('meteo', meteoSchema);
 export default Meteo;
